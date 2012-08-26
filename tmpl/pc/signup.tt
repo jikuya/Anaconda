@@ -1,0 +1,10 @@
+[% WRAPPER 'include/layout.tt' %]
+
+<form action="/signup/" method="post">
+    <input type="text" name="email"    value="">
+    <input type="text" name="nickname" value="" id="nickname">
+    <input type="text" name="passwd"   value="">
+    <button type="submit" class="btn btn-primary" id="tagModalNext" />完了</button>
+</form>
+
+[% END %]

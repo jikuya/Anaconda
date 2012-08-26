@@ -4,6 +4,12 @@ use warnings;
 use utf8;
 use parent qw(Anaconda Amon2::Web);
 use File::Spec;
+use Mouse;
+
+has 'login_name' => (
+    is => 'rw',
+    isa => 'Str',
+);
 
 # dispatcher
 use Anaconda::PC::Dispatcher;
@@ -59,6 +65,14 @@ sub show_error {
 
 # for your security
 __PACKAGE__->add_trigger(
+    BEFORE_DISPATCH => sub {
+        my ( $c ) = @_;
+        if (my $nickname = $c->session->get('nickname')) {
+            $c->login_name($nickname);
+        } else {
+            $c->login_name = undef;
+        }
+    },
     AFTER_DISPATCH => sub {
         my ( $c, $res ) = @_;
 

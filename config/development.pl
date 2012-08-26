@@ -16,4 +16,5 @@ if ( -d '/home/dotcloud/') {
             sqlite_unicode => 1,
         }
     ],
+    'LOGIN_URL' => 'http://localhost:5000',
 };
