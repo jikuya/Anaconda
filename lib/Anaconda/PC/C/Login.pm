@@ -8,7 +8,7 @@ sub index {
     my ($class, $c) = @_;
     my $email  = $c->req->param('email');
     my $passwd = $c->req->param('passwd');
-    $passwd = md5_hex( $passwd );
+    $passwd = crypt($passwd, $c->config->{CRYPT_SALT});
     if (my $user = $c->dbh->selectrow_hashref(qq/SELECT * FROM users WHERE email = '$email' AND passwd = '$passwd'/)) {
         $c->session->set('id' => $user->{id});
         $c->session->set('nickname' => $user->{nickname});

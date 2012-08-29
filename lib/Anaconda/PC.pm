@@ -11,6 +11,11 @@ has 'login_name' => (
     isa => 'Str',
 );
 
+has 'common' => (
+    is => 'rw',
+    isa => 'HashRef',
+);
+
 # dispatcher
 use Anaconda::PC::Dispatcher;
 sub dispatch {
@@ -68,9 +73,9 @@ __PACKAGE__->add_trigger(
     BEFORE_DISPATCH => sub {
         my ( $c ) = @_;
         if (my $nickname = $c->session->get('nickname')) {
-            $c->login_name($nickname);
+            $c->common({login => 1, user_info => {nickname => $nickname}});
         } else {
-            $c->login_name = undef;
+            $c->common->{login} = undef;
         }
     },
     AFTER_DISPATCH => sub {

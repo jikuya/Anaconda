@@ -2,7 +2,6 @@ package Anaconda::PC::C::Signup;
 use strict;
 use warnings;
 use utf8;
-use Digest::MD5 qw/md5_hex/;
 
 sub index {
     my ($class, $c) = @_;
@@ -26,7 +25,7 @@ sub index {
                 $c->dbh->do_i(q{INSERT INTO users }, {
                     nickname  => $nickname,
                     email     => $email,
-                    passwd    => md5_hex( $passwd ),
+                    passwd    => crypt($passwd, $c->config->{CRYPT_SALT} ),
                 });
                 $id = $c->dbh->last_insert_id(undef, undef, undef, undef);
             };

@@ -15,6 +15,7 @@ WriteMakefile(
         'JSON'                            => '2.50',
         'Module::Pluggable::Object'       => '0',
         'Mouse'                           => '0.95',
+        'Plack'                           => '1.0002',
         'Plack::Middleware::ReverseProxy' => '0.09',
         'Plack::Middleware::Session'      => '0',
         'Plack::Session'                  => '0.14',

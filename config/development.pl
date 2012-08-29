@@ -17,4 +17,5 @@ if ( -d '/home/dotcloud/') {
         }
     ],
     'LOGIN_URL' => 'http://localhost:5000',
+    'CRYPT_SALT' => 'sonomamaeast',
 };
